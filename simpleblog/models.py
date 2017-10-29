@@ -2,6 +2,27 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class BaseModel(models.Model):
+    """
+    the basic custom's model
+    """
+    created_at = models.DateTimeField(
+        verbose_name='创建时间',
+        auto_now_add=True,
+    )
+    updated_at = models.DateTimeField(
+        verbose_name='更新时间',
+        auto_now=True,
+    )
+
+    class Meta:
+        abstract = True
+        ordering = [
+            'created_at',
+            'author',
+        ]
+
+
 class Category(models.Model):
     name = models.CharField(
         verbose_name='文章分类',
@@ -16,7 +37,7 @@ class Tag(models.Model):
     )
 
 
-class Post(models.Model):
+class Post(BaseModel):
 
     title = models.CharField(
         verbose_name='文章标题',
@@ -42,13 +63,4 @@ class Post(models.Model):
 
     author = models.ForeignKey(
         User,
-    )
-
-    created_at = models.DateTimeField(
-        verbose_name='创建时间',
-        auto_now_add=True,
-    )
-    updated_at = models.DateTimeField(
-        verbose_name='更新时间',
-        auto_now=True,
     )
