@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 # from django.contrib import admin
+from simpleblog import views
 import xadmin
 xadmin.autodiscover()
 
 
 urlpatterns = [
     url(r'^xadmin/', include(xadmin.site.urls), name='xadmin'),
+    url(r'^tag', views.TagViewSet.as_view()),
 ]
