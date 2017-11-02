@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
+from utils.router_utils import MyDefaultRouter
 
 from . import views
 
-router = DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 
 router.register(
     r'tags',
@@ -20,6 +21,11 @@ router.register(
 router.register(
     r'users',
     views.UserViewSet,
+)
+
+sim_router = MyDefaultRouter()
+sim_router.register(
+    views.TagViewSet,
 )
 
 
