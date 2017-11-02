@@ -50,6 +50,8 @@ class User(AbstractBaseUser, BaseModel):
         processors=[ResizeToFill(85, 85)],
     )
 
+    USERNAME_FIELD = 'username'
+
     REQUIRED_FIELDS = ['email', ]
 
     def get_short_name(self):

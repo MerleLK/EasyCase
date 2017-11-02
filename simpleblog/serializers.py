@@ -22,7 +22,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     # https://github.com/matthewwithanm/django-imagekit/issues/289
-    avatar = serializers.ImageField(source="avatar")
+    avatar = serializers.ImageField()
 
     class Meta:
         model = models.User
